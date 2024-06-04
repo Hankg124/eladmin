@@ -13,12 +13,14 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
     "@types/js-cookie": "^3.0.6",
     "axios": "^1.7.2",
-    "element-plus": "^2.7.3",
+    "element-plus": "^2.7.4",
     "husky": "^9.0.11",
     "js-base64": "^3.7.7",
     "js-cookie": "^3.0.5",
+    "jsencrypt": "^3.3.2",
     "pinia": "^2.1.7",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"

@@ -63,7 +63,7 @@ class Request {
     this.serves.interceptors.request.use(
       (config: InternalAxiosRequestConfig) => {
         // 因为将token已经封装cookie中,所以从cookie取出token,进行放置
-        config.headers['Authorization'] = getToken()
+        config.headers['Authorization'] = getToken('token')
         return config
       },
       (error: AxiosError) => {
@@ -83,8 +83,8 @@ class Request {
         const { data,status } = response // 解构
         if (status === TS.Code.GUOQI) {
           // 登录信息失效，应跳转到登录页面，并清空本地的token
-          removeToken()
-          router.push({ path: 'login' })
+          // removeToken()
+          // router.push({ path: '/login' })
           return Promise.reject(data)
         }
         return data
@@ -94,8 +94,8 @@ class Request {
         const { response } = error
         if (error && response) {
           if (response.status === TS.Code.GUOQI) {
-            removeToken()
-            router.push({ name: 'login' })
+            // removeToken()
+            // router.push({ name: 'login' })
           }
           switch (
             response.status // 跨域存在获取不到状态码的情况
@@ -150,16 +150,16 @@ class Request {
    *   }
    */
 
-  get<T>(url: string, params?:object): Promise<TS.ReaposeResult<T>> {
+  get<T>(url: string, params?:Object): Promise<T> {
     return this.serves.get(this.adUrl(url), { params })
   }
-  post<T>(url: string, params?:object): Promise<TS.ReaposeResult<T>> {
-    return this.serves.post(this.adUrl(url),  params )
+  post<T>(url: string, data?:Object): Promise<T> {
+    return this.serves.post(this.adUrl(url),data )
   }
-  put<T>(url: string, params?:object): Promise<TS.ReaposeResult<T>> {
-    return this.serves.put(this.adUrl(url),  params )
+  put<T>(url: string, params?:Object): Promise<T> {
+    return this.serves.put(this.adUrl(url),params )
   }
-  delete<T>(url: string, params?:object): Promise<TS.ReaposeResult<T>> {
+  delete<T>(url: string, params?:Object): Promise<T> {
     return this.serves.delete(this.adUrl(url),  {params} )
   }
 }
