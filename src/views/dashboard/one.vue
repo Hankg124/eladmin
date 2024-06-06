@@ -1,7 +1,5 @@
 <template>
-<el-main>
-<router-view></router-view>
-</el-main>
+    1
 </template>
 <script lang='ts' setup>
 

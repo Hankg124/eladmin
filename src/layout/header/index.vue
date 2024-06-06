@@ -1,5 +1,5 @@
 <template>
-<el-header style="background-color: aqua;">
+<el-header>
 <Top></Top>
 <Router></Router>
 </el-header>
@@ -13,6 +13,8 @@ const Router=defineAsyncComponent(()=>import('./headerRouter.vue'))
 </script>
 <style lang='scss' scoped>
 .el-header{
-    height: 84px;
+    padding: 0;
+    height: 90px;
+    box-shadow: 0 0 10px 2px #ebeaea;
 }
 </style>

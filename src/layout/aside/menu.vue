@@ -1,6 +1,6 @@
 <template>
-    <el-menu router active-text-color="#3066e4" background-color="#304156" class="el-menu-vertical-demo"
-        default-active="/dashboard" text-color="#fff">
+    <el-menu :collapse="!store.isCollapse" router active-text-color="#3066e4" background-color="#304156" class="el-menu-vertical-demo"
+        :default-active="$route.path" text-color="#fff">
         <el-menu-item index="/dashboard">
             <el-icon>
                 <HomeFilled />
@@ -32,13 +32,20 @@
 import { getUserMenuApi } from '@/api/auth';
 import type { MenuType } from '@/api/authType';
 import { ref } from 'vue';
+import {useCounterStore} from '@/stores/counter'
+const store=useCounterStore()
 
 const menu = ref<any>();
 
 const getMenu = async () => {
     const res = await getUserMenuApi();
-    console.log(res);
+    
     menu.value = res;
+    // menu.value.forEach((item:any) => {
+    //     item.children.forEach((ele:any)=>{
+    //         ele.component=ele.component.replace('/index','');
+    //     })
+    // })
 }
 getMenu();
 </script>
